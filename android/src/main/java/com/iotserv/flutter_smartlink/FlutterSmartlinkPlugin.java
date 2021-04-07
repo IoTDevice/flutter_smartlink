@@ -31,13 +31,13 @@ public class FlutterSmartlinkPlugin implements FlutterPlugin, MethodCallHandler 
   private String bssid;
   private String password = null;
   private int timeout = 60;//miao
-  private Activity activity;
+  private FlutterPluginBinding flutterPluginBinding;
   private MethodChannel channel;
 
   protected ISmartLinker mSmartLinker;
 
-  public FlutterSmartlinkPlugin(Activity activity,MethodChannel channel) {
-    this.activity = activity;
+  public FlutterSmartlinkPlugin(FlutterPluginBinding flutterPluginBinding,MethodChannel channel) {
+    this.flutterPluginBinding = flutterPluginBinding;
     this.channel = channel;
   }
 
@@ -97,7 +97,7 @@ public class FlutterSmartlinkPlugin implements FlutterPlugin, MethodCallHandler 
       );
       //开始 smartLink
       try {
-        mSmartLinker.start(activity.getApplicationContext(), password,ssid);
+        mSmartLinker.start(flutterPluginBinding.getApplicationContext(), password,ssid);
       }catch (Exception e) {
         Log.d("====smartlink===",e.getMessage());
         e.printStackTrace();
