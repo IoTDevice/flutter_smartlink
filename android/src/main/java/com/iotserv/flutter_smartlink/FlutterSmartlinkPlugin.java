@@ -44,7 +44,7 @@ public class FlutterSmartlinkPlugin implements FlutterPlugin, MethodCallHandler 
   @Override
   public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
     channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "flutter_smartlink");
-    channel.setMethodCallHandler(this);
+    channel.setMethodCallHandler(new FlutterSmartlinkPlugin(flutterPluginBinding,channel));
   }
 
   @Override
